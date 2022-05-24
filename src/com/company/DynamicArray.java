@@ -45,39 +45,36 @@ public class DynamicArray<T> implements Iterable<T>{
         if(len + 1  >= capacity)
         {
             if(capacity == 0) {capacity = 1;}
-            System.out.println("The array is too big, resizing now");
-            T[] newArray = (T[]) new Object[capacity * 2];
-            capacity = capacity*2;
+            T[] newArray = (T[]) new Object[capacity * 2]; //Create new array of double size
+            capacity = capacity*2; //Set the capacity to the new capacity
 
             for(int i = 0;  i< len; ++i)
             {
-                newArray[i] = arr[i];
+                newArray[i] = arr[i];  //Copy everything to the new array
             }
 
-            arr = newArray;
+            arr = newArray;  //Set the array to the new array
         }
-        arr[len++] = object;
+        arr[len++] = object; //add the item to the end of the array.
     }
 
     public void removeAt(int index)
     {
-        T data = arr[index];
+        T data = arr[index];  // Locate the item you want to remove
 
-        T[] newArr = (T[]) new Object[len - 1];
+        T[] newArr = (T[]) new Object[len - 1];  //Create a new temp array that is smaller than one of the original
 
         for(int i = 0, k = 0; i<len; ++i)
         {
             if(arr[i] == data)
             {
-                continue;
+                continue;  //If the array index is at the data we want to remove keep going (skip it)
             }
-            newArr[k++] = arr[i];
+            newArr[k++] = arr[i]; //if it isnt add all items EXCEPT the object we want to remove into the new array
         }
 
-        arr = newArr;
-        System.out.println(Arrays.toString(newArr));
-System.out.println(capacity);
-        capacity = --len;
+        arr = newArr;  //set array to new array
+        capacity = --len;  //decrement the length by 1
     }
 
     public boolean  remove(T Obj)
